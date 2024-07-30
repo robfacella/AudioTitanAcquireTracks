@@ -10,8 +10,14 @@ for f in *.mkv; do
   # Print filename
   echo "File -- $f"
   # ffprobe that File
-  ffprobe "$f"
-
+  #ffprobe "$f"
+  # Probe the File for an ITERABLE list (csv)
+  #ffprobe -v quiet -show_entries stream=index,codec_name,height -of csv "$f"
+  for line in $(ffprobe -v quiet -show_entries stream=index,codec_name,height -of csv "$f"); do
+    echo "$line okokok"
+    ## if audio
+  done
+  #ffmpeg -i "$f"
   # Now to extract the tracks...
 done
 #ls -lah 2024-07-28\ 14-20-12.mkv
