@@ -14,7 +14,7 @@ for f in *.mkv; do
   # Probe the File for an ITERABLE list (csv)
   #ffprobe -v quiet -show_entries stream=index,codec_name,height -of csv "$f"
   for line in $(ffprobe -v quiet -show_entries stream=index,codec_name,height -of csv "$f"); do
-    echo "$line okokok"
+    echo "$line" >> "$f"".probe"
     ## if audio
   done
   #ffmpeg -i "$f"
