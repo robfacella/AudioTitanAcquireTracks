@@ -3,6 +3,7 @@ workDir=".."
 thisDir=$(pwd)
 
 cd $workDir
-ls *.mkv | tail -6
 
-echo $thisDir"/TestingTracks"
+mkdir -p "$thisDir""/TestingTracks"
+
+cp $(ls *.mkv | tail -6) $thisDir"/TestingTracks"
