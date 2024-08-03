@@ -9,12 +9,13 @@ cd ..
 for f in *.mkv; do
   # Print filename
   echo "File -- $f"
+  mkdir -p "$f""EXTRACT"
   # ffprobe that File
   #ffprobe "$f"
   # Probe the File for an ITERABLE list (csv)
   #ffprobe -v quiet -show_entries stream=index,codec_name,height -of csv "$f"
   for line in $(ffprobe -v quiet -show_entries stream=index,codec_name,height -of csv "$f"); do
-    echo "$line" >> "$f"".probe"
+    echo "$line" >> "$f""EXTRACT/""probe"
     ## if audio
   done
   #ffmpeg -i "$f"
