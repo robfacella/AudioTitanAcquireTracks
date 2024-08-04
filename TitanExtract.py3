@@ -9,10 +9,33 @@ os.chdir ( targetDir )
 # Set Main working Driectory regardless of how Target Dir is Set
 mainDir = ( os.getcwd() )
 
+def ReadPROBE():
+  f = open("probe", "r")
+  probe = ( f.readlines() )
+  f.close()
+  return probe
+def AudioTracks(probe):
+  filename = ( (os.getcwd().strip('EXTRACT')).split('/')[-1] )
+  for line in probe:
+    # Remove newLine char '\n'
+    line = line.strip()
+    # Split the CSV
+    fields = line.split(',')
+    # fields [0] is STREAM, [1] is trackNumber, [2] is codex, [3] if available is video height
+    # if an audio codex
+    if fields[2] == 'aac':
+      #print (fields)
+     # Skip Track 1, which is combined MIC and Desktop in my case
+     if fields[1] != '1' :
+      extractTo = ( filename + 'TRACK' + fields[1] + '.mp3' )
+      print ( extractTo )
 def ExtractSauce(path):
   # Move into Extraction Folder with PROBE file
   os.chdir(path)
   #
+  probe = ReadPROBE()
+  AudioTracks(probe)
+
 with os.scandir() as listDir:
   for entry in listDir:
     # Only run through Directories which end in the substring "EXTRACT"
