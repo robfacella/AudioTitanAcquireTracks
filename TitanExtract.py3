@@ -14,11 +14,12 @@ def ReadPROBE():
   probe = ( f.readlines() )
   f.close()
   return probe
-def ExtractFromTo(fromThis, toThis):
-  print ("Extracting from " + fromThis + " to " + toThis + " ... ")
-  
+def ExtractFromTo(fromThis, track, toThis):
+  print ("Extracting from " + fromThis + " track"+ track + " to " + toThis + " ... ")
+  os.system('ffmpeg -i ' + '../' + fromThis + ' -map 0:' + str(track) + ' ' + toThis )
 def AudioTracks(probe):
   filename = ( (os.getcwd().strip('EXTRACT')).split('/')[-1] )
+  filename = filename.replace(' ', '\ ')
   for line in probe:
     # Remove newLine char '\n'
     line = line.strip()
@@ -31,7 +32,7 @@ def AudioTracks(probe):
      # Skip Track 1, which is combined MIC and Desktop in my case
      if fields[1] != '1' :
       extractTo = ( filename + 'TRACK' + fields[1] + '.mp3' )
-      ExtractFromTo ( filename, extractTo )
+      ExtractFromTo ( filename, fields[1], extractTo )
 def ExtractSauce(path):
   # Move into Extraction Folder with PROBE file
   os.chdir(path)
