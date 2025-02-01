@@ -2,8 +2,11 @@
 Extract All Audio Tracks from a Video File with Multiple Audio Streams
 
 # Usage (from a Shell within Project Dir (containing video files [default targets MKV] )
-# Clone a Copy of this Project
-git clone https://github.com/robfacella/AudioTitanAcquireTracks.git
+## Clone a Copy of this Project
+# git clone https://github.com/robfacella/AudioTitanAcquireTracks.git
+## Clone and Traverse into the Tool's subdir
+git clone https://github.com/robfacella/AudioTitanAcquireTracks.git && cd AudioTitanAcquireTracks/
+
 
 # Run the Analyze Script to Generate Extraction Directories with probe file for Track Targeting 
 bash AnalyzeTitan.sh
